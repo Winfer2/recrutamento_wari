@@ -90,4 +90,40 @@
 
      return $stmt;
    }
- }
+    // Create Eventos
+    public function create() {
+      // Create query
+      $query = 'INSERT INTO ' . 
+          $this->table . '
+        SET
+        Titulo = :Titulo,
+        Descricao = :Descricao,
+        Data = :Data,
+        Local = :Local';
+
+      // Prepare statement
+      $stmt = $this->conn->prepare($query);
+
+      // Clean data
+      $this->Titulo = htmlspecialchars(strip_tags($this->Titulo));
+      $this->Descricao = htmlspecialchars(strip_tags($this->Descricao));
+      $this->Data = htmlspecialchars(strip_tags($this->Data));
+      $this->Local = htmlspecialchars(strip_tags($this->categorLocaly_id));
+
+      // Bind data
+      $stmt->bindParam(':Titulo', $this->Titulo);
+      $stmt->bindParam(':Descricao', $this->Descricao);
+      $stmt->bindParam(':Data', $this->Data);
+      $stmt->bindParam(':Local', $this->Local);
+
+      // Execute query
+      if($stmt->execute()) {
+        return true;
+      }
+
+      // Print error if something goes wrong
+      printf("Error: %s.\n", $stmt->error);
+
+      return false;
+    }
+  }
