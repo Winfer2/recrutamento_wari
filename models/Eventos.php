@@ -39,4 +39,55 @@
 
       return $stmt;
     }
-  }
+
+    // Get Single Eventos
+    public function read_title() {
+       // Create query
+       $query = 'SELECT 
+            p.ID,
+            p.Titulo,
+            p.Descricao,
+            p.Data,
+            p.Local
+      FROM
+        ' . $this->table . ' p
+      WHERE
+        p.Titulo = ?';
+
+      // Prepare statement
+      $stmt = $this->conn->prepare($query);
+
+      // Bind Titulo
+      $stmt->bindParam(1, $this->Titulo);
+
+      // Execute query
+      $stmt->execute();
+
+      return $stmt;
+    }
+
+    public function read_data() {
+      // Create query
+      $query = 'SELECT 
+           p.ID,
+           p.Titulo,
+           p.Descricao,
+           p.Data,
+           p.Local
+     FROM
+       ' . $this->table . ' p
+     WHERE
+       p.Data = ?';
+
+     // Prepare statement
+     $stmt = $this->conn->prepare($query);
+
+     // Bind Data
+     $stmt->bindParam(1, $this->Data);
+
+     // Execute query
+     $stmt->execute();
+
+     return $stmt;
+   }
+ }
