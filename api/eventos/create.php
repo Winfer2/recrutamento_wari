@@ -10,7 +10,8 @@
 	"Titulo" : "eventoC",
 	"Descricao" : "corpo",
 	"Data" : "2018-08-30",
-	"Local" : ""
+  "Local" : "",
+  "Imagem" : "image in base 64"
   }
 
   */
@@ -38,6 +39,7 @@
   $post->Descricao = $data->Descricao;
   $post->Data = $data->Data;
   $post->Local = $data->Local;
+  $post->Imagem = $data->Imagem;
 
   // Create post
   if($post->create()) {

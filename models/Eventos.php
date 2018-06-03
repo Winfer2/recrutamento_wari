@@ -99,7 +99,8 @@
         Titulo = :Titulo,
         Descricao = :Descricao,
         Data = :Data,
-        Local = :Local';
+        Local = :Local,
+        Imagem = :Imagem';
 
       // Prepare statement
       $stmt = $this->conn->prepare($query);
@@ -108,13 +109,15 @@
       $this->Titulo = htmlspecialchars(strip_tags($this->Titulo));
       $this->Descricao = htmlspecialchars(strip_tags($this->Descricao));
       $this->Data = htmlspecialchars(strip_tags($this->Data));
-      $this->Local = htmlspecialchars(strip_tags($this->categorLocaly_id));
+      $this->Local = htmlspecialchars(strip_tags($this->Local));
+      $this->Imagem = htmlspecialchars(strip_tags($this->Imagem));
 
       // Bind data
       $stmt->bindParam(':Titulo', $this->Titulo);
       $stmt->bindParam(':Descricao', $this->Descricao);
       $stmt->bindParam(':Data', $this->Data);
       $stmt->bindParam(':Local', $this->Local);
+      $stmt->bindParam(':Imagem', $this->Imagem);
 
       // Execute query
       if($stmt->execute()) {
